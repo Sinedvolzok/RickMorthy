@@ -9,5 +9,42 @@ import Foundation
 
 /// Object that represent a single API call
 final class RMRequest {
+    private struct Constants {
+        static let baseUrl = "https://rickandmortyapi.com/api"
+    }
     
+    let endpoint: RMEndpoint
+    
+    let pathComponents: [String]
+    let queryParameters: [URLQueryItem]
+    
+    /// Constructin URL for API Request in String format
+    public var urlString: StringURL {
+        var string = Constants.baseUrl
+        string += "/"
+        string += endpoint.rawValue
+        
+        if !queryParameters.isEmpty {
+            string += "?"
+            let argumentString = queryParameters.compactMap({
+                guard let value = $0.value else {fatalError("No value in URL")}
+                return "\($0.name)=\(value)"
+            }).joined(separator: "&")
+            string += argumentString
+        }
+        return string
+    }
+    
+    public var url: URL? {
+        return nil
+    }
+    
+    public init(endpoint: RMEndpoint,
+         pathComponents: [String] = [],
+         queryParameters: [URLQueryItem] = []
+    ) {
+        self.endpoint = endpoint
+        self.pathComponents = pathComponents
+        self.queryParameters = queryParameters
+    }
 }
