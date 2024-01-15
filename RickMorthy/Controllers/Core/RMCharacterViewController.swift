@@ -24,7 +24,8 @@ final class RMCharacterViewController: UIViewController {
         )
         print(request.url ?? "FAIL!")
         
-        RMService.shared.execute(request, expecting: RMCharacter.self) { result in
+        RMService.shared.execute(request, expecting: String.self) { result in
+            // switch result {...}
         }
     }
 

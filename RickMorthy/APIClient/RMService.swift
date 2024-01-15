@@ -22,4 +22,12 @@ final class RMService {
         _ request: RMRequest,
         expecting type: T.Type,
         complition: @escaping (Result<T, Error>) -> () ) {}
+    
+    // MARK: - Private
+    private func request(from rmRequest: RMRequest) -> URLRequest? {
+        guard let url = rmRequest.url else { fatalError("Can't Get URL from Request") }
+        var request = URLRequest(url: url)
+        request.httpMethod = rmRequest.httpMethod
+        return request
+    }
 }
