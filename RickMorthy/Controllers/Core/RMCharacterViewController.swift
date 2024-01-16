@@ -16,16 +16,16 @@ final class RMCharacterViewController: UIViewController {
         title = "Character"
         
         let request = RMRequest(
-            endpoint: .character,
-            queryParameters: [
-                URLQueryItem(name: "name", value: "rick"),
-                URLQueryItem(name: "status", value: "alive")
-            ]
+            endpoint: .character
         )
-        print(request.url ?? "FAIL!")
+        print(request.url)
         
         RMService.shared.execute(request, expecting: String.self) { result in
-            // switch result {...}
+            switch result {
+            case .success: break
+            case .failure(let error):
+                print(String(describing: error))
+            }
         }
     }
 
