@@ -50,9 +50,10 @@ final class RMRequest {
     // MARK:  - Public
     
     ///Construct request
-    ///- Parameters:
-    /// - endpoint: Collection path components
-    /// - query: Collection query paramenets
+    /// - Parameters:
+    ///     - endpoint: Target endpoints
+    ///     - pathComponents: Collection of path components
+    ///     - queryParameters: Collection of query paramenets
     public init(endpoint: RMEndpoint,
                 pathComponents: [String] = [],
          queryParameters: [URLQueryItem] = []
