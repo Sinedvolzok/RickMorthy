@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		534C69DD2B58FFEB00743BA7 /* RMGetAllCharactersResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534C69DC2B58FFEB00743BA7 /* RMGetAllCharactersResponse.swift */; };
+		534C69DF2B5C1C7900743BA7 /* CharacterListViewVewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534C69DE2B5C1C7900743BA7 /* CharacterListViewVewModel.swift */; };
+		534C69E12B5C1DE100743BA7 /* CharacterListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534C69E02B5C1DE100743BA7 /* CharacterListView.swift */; };
 		5361995F2B20483000EF9CDE /* RMService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5361995E2B20483000EF9CDE /* RMService.swift */; };
 		536199612B20484E00EF9CDE /* RMRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536199602B20484D00EF9CDE /* RMRequest.swift */; };
 		536199632B20486E00EF9CDE /* RMEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536199622B20486E00EF9CDE /* RMEndpoint.swift */; };
@@ -31,6 +33,8 @@
 
 /* Begin PBXFileReference section */
 		534C69DC2B58FFEB00743BA7 /* RMGetAllCharactersResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMGetAllCharactersResponse.swift; sourceTree = "<group>"; };
+		534C69DE2B5C1C7900743BA7 /* CharacterListViewVewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListViewVewModel.swift; sourceTree = "<group>"; };
+		534C69E02B5C1DE100743BA7 /* CharacterListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListView.swift; sourceTree = "<group>"; };
 		5361995E2B20483000EF9CDE /* RMService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMService.swift; sourceTree = "<group>"; };
 		536199602B20484D00EF9CDE /* RMRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMRequest.swift; sourceTree = "<group>"; };
 		536199622B20486E00EF9CDE /* RMEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMEndpoint.swift; sourceTree = "<group>"; };
@@ -138,6 +142,7 @@
 		53DD66952B19B6B700495DA3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				534C69E02B5C1DE100743BA7 /* CharacterListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -145,6 +150,7 @@
 		53DD66962B19B6C000495DA3 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				534C69DE2B5C1C7900743BA7 /* CharacterListViewVewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -217,7 +223,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1320;
-				LastUpgradeCheck = 1320;
+				LastUpgradeCheck = 1520;
 				TargetAttributes = {
 					53DD66782B19B45800495DA3 = {
 						CreatedOnToolsVersion = 13.2.1;
@@ -259,6 +265,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				534C69DF2B5C1C7900743BA7 /* CharacterListViewVewModel.swift in Sources */,
 				53DD66A52B19BA2100495DA3 /* RMLocationViewController.swift in Sources */,
 				53DD669D2B19B88D00495DA3 /* RMCharacter.swift in Sources */,
 				534C69DD2B58FFEB00743BA7 /* RMGetAllCharactersResponse.swift in Sources */,
@@ -267,6 +274,7 @@
 				53DD66A82B19BA4F00495DA3 /* RMEpisodesViewController.swift in Sources */,
 				536199632B20486E00EF9CDE /* RMEndpoint.swift in Sources */,
 				53DD669F2B19B8AA00495DA3 /* RMEpisode.swift in Sources */,
+				534C69E12B5C1DE100743BA7 /* CharacterListView.swift in Sources */,
 				536199612B20484E00EF9CDE /* RMRequest.swift in Sources */,
 				53DD66AA2B19BA7D00495DA3 /* RMSettingsViewController.swift in Sources */,
 				536199672B2053E300EF9CDE /* RMCharacterLocation.swift in Sources */,
@@ -331,6 +339,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -392,6 +401,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
