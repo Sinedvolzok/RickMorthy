@@ -10,6 +10,8 @@
 		534C69DD2B58FFEB00743BA7 /* RMGetAllCharactersResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534C69DC2B58FFEB00743BA7 /* RMGetAllCharactersResponse.swift */; };
 		534C69DF2B5C1C7900743BA7 /* CharacterListViewVewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534C69DE2B5C1C7900743BA7 /* CharacterListViewVewModel.swift */; };
 		534C69E12B5C1DE100743BA7 /* CharacterListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534C69E02B5C1DE100743BA7 /* CharacterListView.swift */; };
+		534C69E32B5D9E8C00743BA7 /* RMCharacterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534C69E22B5D9E8C00743BA7 /* RMCharacterCollectionViewCell.swift */; };
+		534C69E52B5DA1B100743BA7 /* RMCharacterCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534C69E42B5DA1B100743BA7 /* RMCharacterCollectionViewCellViewModel.swift */; };
 		5361995F2B20483000EF9CDE /* RMService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5361995E2B20483000EF9CDE /* RMService.swift */; };
 		536199612B20484E00EF9CDE /* RMRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536199602B20484D00EF9CDE /* RMRequest.swift */; };
 		536199632B20486E00EF9CDE /* RMEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536199622B20486E00EF9CDE /* RMEndpoint.swift */; };
@@ -35,6 +37,8 @@
 		534C69DC2B58FFEB00743BA7 /* RMGetAllCharactersResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMGetAllCharactersResponse.swift; sourceTree = "<group>"; };
 		534C69DE2B5C1C7900743BA7 /* CharacterListViewVewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListViewVewModel.swift; sourceTree = "<group>"; };
 		534C69E02B5C1DE100743BA7 /* CharacterListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListView.swift; sourceTree = "<group>"; };
+		534C69E22B5D9E8C00743BA7 /* RMCharacterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMCharacterCollectionViewCell.swift; sourceTree = "<group>"; };
+		534C69E42B5DA1B100743BA7 /* RMCharacterCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMCharacterCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
 		5361995E2B20483000EF9CDE /* RMService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMService.swift; sourceTree = "<group>"; };
 		536199602B20484D00EF9CDE /* RMRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMRequest.swift; sourceTree = "<group>"; };
 		536199622B20486E00EF9CDE /* RMEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMEndpoint.swift; sourceTree = "<group>"; };
@@ -143,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				534C69E02B5C1DE100743BA7 /* CharacterListView.swift */,
+				534C69E22B5D9E8C00743BA7 /* RMCharacterCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -151,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				534C69DE2B5C1C7900743BA7 /* CharacterListViewVewModel.swift */,
+				534C69E42B5DA1B100743BA7 /* RMCharacterCollectionViewCellViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -267,6 +273,7 @@
 			files = (
 				534C69DF2B5C1C7900743BA7 /* CharacterListViewVewModel.swift in Sources */,
 				53DD66A52B19BA2100495DA3 /* RMLocationViewController.swift in Sources */,
+				534C69E52B5DA1B100743BA7 /* RMCharacterCollectionViewCellViewModel.swift in Sources */,
 				53DD669D2B19B88D00495DA3 /* RMCharacter.swift in Sources */,
 				534C69DD2B58FFEB00743BA7 /* RMGetAllCharactersResponse.swift in Sources */,
 				5361995F2B20483000EF9CDE /* RMService.swift in Sources */,
@@ -282,6 +289,7 @@
 				536199692B21A26700EF9CDE /* RMTypealias.swift in Sources */,
 				53DD669B2B19B86900495DA3 /* RMLocation.swift in Sources */,
 				53DD66A32B19B9ED00495DA3 /* RMCharacterViewController.swift in Sources */,
+				534C69E32B5D9E8C00743BA7 /* RMCharacterCollectionViewCell.swift in Sources */,
 				53DD667F2B19B45800495DA3 /* SceneDelegate.swift in Sources */,
 				536199652B20535900EF9CDE /* RMOrigin.swift in Sources */,
 				53DD66872B19B45800495DA3 /* RickMorthy.xcdatamodeld in Sources */,
