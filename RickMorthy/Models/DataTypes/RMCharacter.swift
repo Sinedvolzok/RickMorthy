@@ -25,6 +25,15 @@ struct RMCharacter: Codable {
         case alive = "Alive"
         case dead = "Dead"
         case unknown = "unknown"
+        
+        var text: String {
+            switch self {
+            case .alive,.dead:
+                return rawValue
+            case .unknown:
+                return "Unnown"
+            }
+        }
     }
     
     enum Gender: String, Codable {
