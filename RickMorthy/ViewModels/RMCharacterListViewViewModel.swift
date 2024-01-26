@@ -9,9 +9,10 @@ import UIKit
 
 protocol RMCharacterListViewViewModelDelegate {
     func didLoadInitialCharacters ()
+    func didSelectCharacter(_ character: RMCharacter)
 }
 
-final class CharacterListViewViewModel: NSObject {
+final class RMCharacterListViewViewModel: NSObject {
     
     public var delegate: RMCharacterListViewViewModelDelegate?
     
@@ -47,7 +48,7 @@ final class CharacterListViewViewModel: NSObject {
     }
 }
 
-extension CharacterListViewViewModel: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension RMCharacterListViewViewModel: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return cellViewModels.count
@@ -66,5 +67,11 @@ extension CharacterListViewViewModel: UICollectionViewDataSource, UICollectionVi
         let bounds = UIScreen.main.bounds
         let width = (bounds.width-32)/2
         return CGSize(width: width, height: width*1.389)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        let character = characters[indexPath.row]
+        delegate?.didSelectCharacter(character)
     }
 }
