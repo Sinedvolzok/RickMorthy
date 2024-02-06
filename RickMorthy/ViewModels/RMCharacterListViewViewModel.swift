@@ -8,7 +8,8 @@
 import UIKit
 
 protocol RMCharacterListViewViewModelDelegate {
-    func didLoadInitialCharacters ()
+    func didLoadInitialCharacters()
+    func didLoadMoreCharacters(with newIndexPaths: [IndexPath])
     func didSelectCharacter(_ character: RMCharacter)
 }
 ///View model to handle character list view logic
@@ -26,7 +27,9 @@ final class RMCharacterListViewViewModel: NSObject {
                     characterStatus: character.status,
                     characterImageUrl: URL(string: character.image)
                 )
-                cellViewModels.append(viewModel)
+                if !cellViewModels.contains(viewModel) {
+                    cellViewModels.append(viewModel)
+                }
             }
         }
     }
@@ -55,20 +58,40 @@ final class RMCharacterListViewViewModel: NSObject {
     /// Paginate if additional characters are needed
     public func fetchAdditionalCharacters(url: URL) {
         guard !isLoadinMoreCharacters else { return }
-        isLoadinMoreCharacters.toggle()
+        isLoadinMoreCharacters = true
         print("Fetching More Characters:")
         guard let request = RMRequest(url: url) else {
-            isLoadinMoreCharacters.toggle()
+            isLoadinMoreCharacters = false
             print("Failed to create request")
             return
         }
         RMService.shared.execute(request,
-                                 expecting: RMGetAllCharactersResponse.self) { results in
+                                 expecting: RMGetAllCharactersResponse.self) 
+        { [weak self] results in
+            guard let self else { return }
             switch results {
-            case .success(let success):
-                print(String(describing: success))
+            case .success(let responseModel):
+                print("Pre-update: \(self.cellViewModels.count)")
+                let moreResults = responseModel.results
+                let info = responseModel.info
+                self.apiInfo = info
+                
+                print(moreResults.count)
+                print(moreResults.first?.name)
+                let originalCount = self.characters.count
+                let newCount = moreResults.count
+                let total = originalCount + newCount
+                let startingIndex = total - newCount
+                let indexPathToAdd: [IndexPath] = Array(startingIndex..<(startingIndex + newCount))
+                    .compactMap ({ return IndexPath(row: $0, section: 0) })
+                self.characters.append(contentsOf: moreResults)
+                DispatchQueue.main.async {
+                    self.delegate?.didLoadMoreCharacters(with: indexPathToAdd)
+                    print("Post-update: \(self.cellViewModels.count)")
+                }
             case .failure(let failure):
                 print(String(describing: failure))
+                self.isLoadinMoreCharacters = false
             }
         }
     }

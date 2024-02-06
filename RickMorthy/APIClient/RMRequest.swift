@@ -80,8 +80,14 @@ final class RMRequest {
             let components = trimmed.components(separatedBy: "?")
             guard !components.isEmpty else { return nil }
             let endpointString = components[0]
+            let queryItemsString = components[1]
+            let queryItems: [URLQueryItem] = queryItemsString.components(separatedBy: "&").compactMap({
+                guard $0.contains("=") else { return nil }
+                let paths = $0.components(separatedBy: "=")
+                return URLQueryItem(name: paths[0], value: paths[1])
+            })
             guard let rmEndpoint = RMEndpoint(rawValue: endpointString) else { return nil }
-            self.init(endpoint: rmEndpoint)
+            self.init(endpoint: rmEndpoint, queryParameters: queryItems)
             return
         }
         return nil
