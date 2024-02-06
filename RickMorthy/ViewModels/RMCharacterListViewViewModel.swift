@@ -75,9 +75,6 @@ final class RMCharacterListViewViewModel: NSObject {
                 let moreResults = responseModel.results
                 let info = responseModel.info
                 self.apiInfo = info
-                
-                print(moreResults.count)
-                print(moreResults.first?.name)
                 let originalCount = self.characters.count
                 let newCount = moreResults.count
                 let total = originalCount + newCount
@@ -87,7 +84,7 @@ final class RMCharacterListViewViewModel: NSObject {
                 self.characters.append(contentsOf: moreResults)
                 DispatchQueue.main.async {
                     self.delegate?.didLoadMoreCharacters(with: indexPathToAdd)
-                    print("Post-update: \(self.cellViewModels.count)")
+                    self.isLoadinMoreCharacters = false
                 }
             case .failure(let failure):
                 print(String(describing: failure))
