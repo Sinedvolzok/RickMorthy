@@ -11,6 +11,9 @@ class RMCharacterDetailViewController: UIViewController {
     
     private let viewModel: RMCharacterDetailViewViewModel
     
+    private let detailView = RMCharacterDetailView()
+    
+    // MARK: - Init
     init(viewModel: RMCharacterDetailViewViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -25,17 +28,44 @@ class RMCharacterDetailViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         title = viewModel.title
+        view.addSubview(detailView)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: .action,
+            target: self,
+            action: #selector(didTapShare)
+        )
+        addConstraints()
+        
+        detailView.collectionView?.delegate = self
+        detailView.collectionView?.dataSource = self
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @objc
+    private func didTapShare() {}
+    
+    private func addConstraints() {
+        NSLayoutConstraint.activate([
+            detailView.topAnchor
+                .constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            detailView.bottomAnchor
+                .constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            detailView.leadingAnchor
+                .constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            detailView.trailingAnchor
+                .constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
+        ])
     }
-    */
+}
 
+// MARK: - CollectionView
+
+extension RMCharacterDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        20
+    }
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+        cell.backgroundColor = .systemPink
+        return cell
+    }
 }

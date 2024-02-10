@@ -28,7 +28,7 @@ final class RMRequest {
         string += endpoint.rawValue
         
         if !pathComponents.isEmpty {
-            pathComponents.forEach({string += "\($0)"})
+            pathComponents.forEach({string += "/\($0)"})
         }
         if !queryParameters.isEmpty {
             string += "?"
@@ -63,8 +63,8 @@ final class RMRequest {
         self.queryParameters = queryParameters
     }
     
-    
-    
+    /// Attempt to craete request
+    /// - Parameter url: Url to parse
     convenience init?(url: URL) {
         let string = url.absoluteString
         guard string.contains(Constants.baseUrl) else { return nil }
@@ -73,8 +73,9 @@ final class RMRequest {
             let components = trimmed.components(separatedBy: "/")
             guard !components.isEmpty else { return nil }
             let endpointString = components[0]
+            let pathComponents = components.count > 1 ? Array(components[1...]) : []
             guard let rmEndpoint = RMEndpoint(rawValue: endpointString) else { return nil }
-            self.init(endpoint: rmEndpoint)
+            self.init(endpoint: rmEndpoint, pathComponents: pathComponents)
             return
         } else if trimmed.contains("?") {
             let components = trimmed.components(separatedBy: "?")

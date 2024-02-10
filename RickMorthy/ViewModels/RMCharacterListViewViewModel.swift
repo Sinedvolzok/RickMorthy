@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol RMCharacterListViewViewModelDelegate {
+protocol RMCharacterListViewViewModelDelegate: AnyObject {
     func didLoadInitialCharacters()
     func didLoadMoreCharacters(with newIndexPaths: [IndexPath])
     func didSelectCharacter(_ character: RMCharacter)
@@ -15,7 +15,7 @@ protocol RMCharacterListViewViewModelDelegate {
 ///View model to handle character list view logic
 final class RMCharacterListViewViewModel: NSObject {
     
-    public var delegate: RMCharacterListViewViewModelDelegate?
+    public weak var delegate: RMCharacterListViewViewModelDelegate?
     
     private var isLoadinMoreCharacters = false
     
