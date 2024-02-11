@@ -12,6 +12,8 @@ final class RMCharacterDetailView: UIView {
     
     public var collectionView: UICollectionView?
     
+    private let viewModel: RMCharacterDetailViewViewModel
+    
     private let spinner: UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView()
         spinner.style = .large
@@ -22,7 +24,8 @@ final class RMCharacterDetailView: UIView {
     
     // MARK: - Init
 
-    override init(frame: CGRect) {
+    init(frame: CGRect, viewModel: RMCharacterDetailViewViewModel) {
+        self.viewModel = viewModel
         super.init(frame: frame)
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = .systemTeal
@@ -62,17 +65,14 @@ final class RMCharacterDetailView: UIView {
     }
     
     private func createSection(for sectionIndex: Int) -> NSCollectionLayoutSection {
-        let item = NSCollectionLayoutItem(
-            layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1.0),
-                heightDimension: .fractionalHeight(1.0)))
-        let group = NSCollectionLayoutGroup.vertical(
-            layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1.0),
-                heightDimension: .absolute(140)),
-            subitems: [item])
-        let section = NSCollectionLayoutSection(group: group)
-        return section
+        let sectionTypes = viewModel.sections
+        switch sectionTypes[sectionIndex] {
+        case .photoImage:
+            return viewModel.createPhotoSectionLayout()
+        case .information:
+            return viewModel.createInfoSectionLayout()
+        case .episodes:
+            return viewModel.createEpisodesSectionLayout()
+        }
     }
-    
 }
