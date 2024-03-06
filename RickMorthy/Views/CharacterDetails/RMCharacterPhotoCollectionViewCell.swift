@@ -8,7 +8,7 @@
 import UIKit
 
 final class RMCharacterPhotoCollectionViewCell: UICollectionViewCell {
-    static var cellIdentifer: String {
+    static var cellIdentifier: String {
         return String(describing: self)
     }
     

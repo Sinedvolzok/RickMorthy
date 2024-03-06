@@ -8,7 +8,9 @@
 import UIKit
 
 final class RMFooterLoaderCollectionReusableView: UICollectionReusableView {
-    static let identifier = "RMFooterLoaderCollectionReusableView"
+    static var identifier: String {
+        return String(describing: self)
+    }
     
     private let spinner: UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView()

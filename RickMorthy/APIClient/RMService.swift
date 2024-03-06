@@ -30,7 +30,6 @@ final class RMService {
                 complition(.failure(RMServiceError.failedToCreateRequest))
                 return
             }
-            print("API Call: \(request.url?.absoluteString ?? "")")
             let task = URLSession.shared.dataTask(with: urlRequest) { data, _, error in
                 guard let data = data, error == nil else {
                     complition(.failure(error ?? RMServiceError.failedToGetData))
@@ -40,7 +39,6 @@ final class RMService {
                 do {
                     let result = try JSONDecoder().decode(type.self, from: data)
                     complition(.success(result))
-                    
                 } catch {
                     complition(.failure(error))
                 }
