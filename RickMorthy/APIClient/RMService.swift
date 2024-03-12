@@ -10,6 +10,7 @@ import Foundation
 final class RMService {
     /// Sared singleton instance
     static let shared = RMService()
+    private let cacheManager = RMAPICacheManager()
     /// Privatise coordinator
     private init() {}
     
@@ -26,11 +27,27 @@ final class RMService {
         _ request: RMRequest,
         expecting type: T.Type,
         complition: @escaping (Result<T, Error>) -> () ) {
+            
+            if let cachedData = cacheManager.cacheResponse(
+                for: request.endpoint,
+                url: request.url
+            ) {
+                print("Using Cache API Response!")
+                ///Decode Response
+                do {
+                    let result = try JSONDecoder().decode(type.self, from: cachedData)
+                    complition(.success(result))
+                } catch {
+                    complition(.failure(error))
+                }
+                return
+            }
+            
             guard let urlRequest = self.request(from: request) else {
                 complition(.failure(RMServiceError.failedToCreateRequest))
                 return
             }
-            let task = URLSession.shared.dataTask(with: urlRequest) { data, _, error in
+            let task = URLSession.shared.dataTask(with: urlRequest) { [weak self] data, _, error in
                 guard let data = data, error == nil else {
                     complition(.failure(error ?? RMServiceError.failedToGetData))
                     return
@@ -38,6 +55,10 @@ final class RMService {
                 ///Decode Response
                 do {
                     let result = try JSONDecoder().decode(type.self, from: data)
+                    self?.cacheManager.setCache(
+                        for: request.endpoint,
+                        url: request.url,
+                        data: data)
                     complition(.success(result))
                 } catch {
                     complition(.failure(error))
