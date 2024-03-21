@@ -30,15 +30,17 @@ class RMCharacterDetailViewController: UIViewController {
         view.backgroundColor = .systemBackground
         title = viewModel.title
         view.addSubview(detailView)
+        addConstraints()
+        addShareButton()
+        detailView.collectionView?.delegate = self
+        detailView.collectionView?.dataSource = self
+    }
+    
+    private func addShareButton() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             barButtonSystemItem: .action,
             target: self,
-            action: #selector(didTapShare)
-        )
-        addConstraints()
-        
-        detailView.collectionView?.delegate = self
-        detailView.collectionView?.dataSource = self
+            action: #selector(didTapShare))
     }
     
     @objc

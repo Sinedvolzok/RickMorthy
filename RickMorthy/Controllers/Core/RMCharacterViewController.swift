@@ -28,7 +28,10 @@ final class RMCharacterViewController: UIViewController, RMCharacterListViewDele
     
     @objc
     private func didTapSearch() {
-        print("Tap Search")
+        let searchViewController = RMSearchViewController(
+            config: RMSearchViewController.Config(type: .character))
+        searchViewController.navigationItem.largeTitleDisplayMode = .never
+        navigationController?.pushViewController(searchViewController, animated: true)
     }
     
     private func setUpConstraints() {

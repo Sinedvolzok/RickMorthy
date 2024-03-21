@@ -8,11 +8,12 @@
 import UIKit
 ///VC to show detals about single episode
 final class RMEpisodesDetailViewController: UIViewController {
+    
     private let viewModel: RMEpisodeDetailViewViewModel
     private let detailView = RMEpisodeDetailView()
     // MARK: - Init
     init(url: URL?) {
-        self.viewModel = .init(endpointUrl: url)
+        self.viewModel = RMEpisodeDetailViewViewModel(endpointUrl: url)
         super.init(nibName: nil, bundle: nil)
     }
     required init?(coder: NSCoder) {
@@ -47,5 +48,10 @@ final class RMEpisodesDetailViewController: UIViewController {
             detailView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             detailView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
+    }
+}
+extension RMEpisodesDetailViewController: RMEpisodeDetailViewViewModelDelegate {
+    func didFetchEpisodeDetails() {
+        detailView.configure(with: viewModel)
     }
 }
