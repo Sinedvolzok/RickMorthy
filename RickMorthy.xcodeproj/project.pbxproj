@@ -145,6 +145,7 @@
 		534010342BA02CC20048974B /* Episode */ = {
 			isa = PBXGroup;
 			children = (
+				534010322BA0285B0048974B /* RMEpisodeDetailView.swift */,
 				534010352BA02D150048974B /* RMEpisodeListView.swift */,
 			);
 			path = Episode;
@@ -239,7 +240,6 @@
 				53400F7B2B677D640048974B /* RMFooterLoaderCollectionReusableView.swift */,
 				53400F7F2B7B4B340048974B /* CharacterDetails */,
 				53400F802B7B4B650048974B /* Character */,
-				534010322BA0285B0048974B /* RMEpisodeDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

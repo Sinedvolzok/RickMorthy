@@ -27,6 +27,8 @@ final class RMEpisodesDetailViewController: UIViewController {
         view.addSubview(detailView)
         setUpConstraints()
         addShareButton()
+        viewModel.delegate = self
+        viewModel.fetchEpisodeData()
     }
     
     private func addShareButton() {
@@ -50,6 +52,7 @@ final class RMEpisodesDetailViewController: UIViewController {
         ])
     }
 }
+// MARK: - Delegate
 extension RMEpisodesDetailViewController: RMEpisodeDetailViewViewModelDelegate {
     func didFetchEpisodeDetails() {
         detailView.configure(with: viewModel)
