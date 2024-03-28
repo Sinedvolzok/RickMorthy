@@ -8,7 +8,7 @@
 import UIKit
 
 final class RMCharacterEpisodesCollectionViewCell: UICollectionViewCell {
-    static var cellIdentifier: String {
+    static var identifier: String {
         return String(describing: self)
     }
     

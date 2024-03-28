@@ -82,7 +82,7 @@ extension RMCharacterDetailViewController: UICollectionViewDelegate, UICollectio
         switch sectionType {
         case .photoImage(viewModel: let viewModel):
             let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: RMCharacterPhotoCollectionViewCell.cellIdentifier,
+                withReuseIdentifier: RMCharacterPhotoCollectionViewCell.identifier,
                 for: indexPath) as? RMCharacterPhotoCollectionViewCell
             guard let cell else { fatalError() }
             cell.configure(with: viewModel)
@@ -96,7 +96,7 @@ extension RMCharacterDetailViewController: UICollectionViewDelegate, UICollectio
             return cell
         case .episodes(viewModels: let viewModels):
             let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: RMCharacterEpisodesCollectionViewCell.cellIdentifier,
+                withReuseIdentifier: RMCharacterEpisodesCollectionViewCell.identifier,
                 for: indexPath) as? RMCharacterEpisodesCollectionViewCell
             guard let cell else { fatalError() }
             let viewModel = viewModels[indexPath.row]

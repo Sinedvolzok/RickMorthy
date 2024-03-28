@@ -14,16 +14,42 @@ protocol RMEpisodeDetailViewViewModelDelegate: AnyObject {
 final class RMEpisodeDetailViewViewModel {
     // MARK: - Private
     private let endpointUrl: URL?
-    private var dataTyple: (RMEpisode,[RMCharacter])? {
+    private var dataTyple: (episode: RMEpisode, characters: [RMCharacter])? {
         didSet {
+            createCellViewModels()
             delegate?.didFetchEpisodeDetails()
         }
     }
+    enum SectionType {
+        case information(viewModels: [RMEpisodeInfoCollectionViewCellViewModel])
+        case characters(viewModel: [RMCharacterCollectionViewCellViewModel])
+    }
     // MARK: - Public
     public weak var delegate: RMEpisodeDetailViewViewModelDelegate?
+    public private(set) var cellViewModels: [SectionType] = []
     // MARK: - Init
     init(endpointUrl: URL?) {
         self.endpointUrl = endpointUrl
+    }
+    // MARK: - Private
+    private func createCellViewModels() {
+        guard let dataTyple else { return }
+        let episode = dataTyple.episode
+        let characters = dataTyple.characters
+        cellViewModels = [
+            .information(viewModels: [
+                .init(title: "Episode Name", value: episode.name),
+                .init(title: "Air Date", value: episode.air_date),
+                .init(title: "Episode", value: episode.episode),
+                .init(title: "Created", value: episode.created)
+            ]),
+            .characters(viewModel: characters.compactMap({
+                return RMCharacterCollectionViewCellViewModel(
+                    characterName: $0.name,
+                    characterStatus: $0.status,
+                    characterImageUrl: URL(string: $0.image))
+            }))
+        ]
     }
     /// Fetch beaking episode model
     public func fetchEpisodeData() {

@@ -10,7 +10,7 @@ import UIKit
 ///Single cell for a character
 class RMCharacterCollectionViewCell: UICollectionViewCell {
     
-    static var cellIdentifier: String {
+    static var identifier: String {
         return String(describing: self)
     }
     
