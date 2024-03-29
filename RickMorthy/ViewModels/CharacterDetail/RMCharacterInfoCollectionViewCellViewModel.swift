@@ -12,28 +12,13 @@ final class RMCharacterInfoCollectionViewCellViewModel {
     private let type: `Type`
     private let value: String
     
-    static let dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
-        formatter.timeZone = .current
-        return formatter
-    }()
-    
-    static let shortFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        formatter.timeStyle = .short
-        return formatter
-    }()
-    
     public var title: String {
         type.displayTitle
     }
     public var displayValue: String {
         guard !value.isEmpty else { return "None" }
-        if let date = Self.dateFormatter.date(from: value),
-            type == .created {
-            let shortDate = Self.shortFormatter.string(from: date)
+        if type == .created {
+            let shortDate = ShortDateFormatter.formatDate(from: value)
             return shortDate
         }
         return value
