@@ -82,7 +82,6 @@ final class RMCharacterInfoCollectionViewCellViewModel {
             case .episodeCount: return UIImage(systemName: "bell")
             }
         }
-        
         var displayTitle: String {
             switch self {
             case .status,.gender,.type,.species,.origin,.location,.created:
@@ -91,16 +90,6 @@ final class RMCharacterInfoCollectionViewCellViewModel {
             }
         }
     }
-    
-   //     .init(value:character.status.text, title: "Status"),
-   //                               .init(value:character.gender.rawValue, title: "Gender"),
-   //                               .init(value:character.type, title: "Type"),
-   //                               .init(value:character.species, title: "Species"),
-   //                               .init(value:character.origin.name, title: "Origin"),
-   //                               .init(value:character.location.name, title: "Location"),
-   //                               .init(value:character.created, title: "Created"),
-   //                               .init(value:"\(character.episode.count)", title: "Total //Episodes")]
-    
     init(value: String, type: `Type`) {
             self.value = value
             self.type = type

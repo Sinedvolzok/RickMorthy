@@ -43,7 +43,7 @@ class RMEpisodeListView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         translatesAutoresizingMaskIntoConstraints = false
-        [collectionView, spinner].forEach({ addSubview($0) })
+        [collectionView, spinner].forEach(addSubview)
         
         setUpConstraints()
         spinner.startAnimating()

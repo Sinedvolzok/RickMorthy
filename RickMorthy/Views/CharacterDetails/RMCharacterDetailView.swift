@@ -31,7 +31,7 @@ final class RMCharacterDetailView: UIView {
         backgroundColor = .systemTeal
         let collectionView = createCollectionView()
         self.collectionView = collectionView
-        [collectionView, spinner].forEach({addSubview($0)})
+        [collectionView, spinner].forEach(addSubview)
         addConstraints()
     }
     

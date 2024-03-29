@@ -11,6 +11,7 @@ protocol RMEpisodeDataRender {
     var name: String { get }
     var air_date: String { get }
     var episode: String { get }
+    var created: String { get }
 }
 
 final class RMCharacterEpisodesCollectionViewCellViewModel {

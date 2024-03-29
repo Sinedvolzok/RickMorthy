@@ -89,9 +89,9 @@ extension RMEpisodeDetailView {
         guard let viewModel else { return createInfoLayout() }
         let sectionType = viewModel.cellViewModels[section]
         switch sectionType {
-        case .information(let viewModels):
+        case .information:
             return createInfoLayout()
-        case .characters(let viewModels):
+        case .characters:
             return createCharacterLayout()
         }
     }
@@ -108,7 +108,7 @@ extension RMEpisodeDetailView {
         let group = NSCollectionLayoutGroup.vertical(
             layoutSize: .init(
                 widthDimension: .fractionalWidth(1),
-                heightDimension: .absolute(100)
+                heightDimension: .absolute(84)
             ), subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
         return section
@@ -161,7 +161,7 @@ extension RMEpisodeDetailView: UICollectionViewDelegate, UICollectionViewDataSou
                 withReuseIdentifier: RMEpisodeInfoCollectionViewCell.identifier,
                 for: indexPath) as? RMEpisodeInfoCollectionViewCell
             guard let cell else { fatalError("WRONG CELL CAST") }
-            cell.backgroundColor = .systemPink
+            cell.backgroundColor = .systemBackground
             cell.configure(with: cellViewModel)
             return cell
         case .characters(let viewModels):
@@ -170,7 +170,7 @@ extension RMEpisodeDetailView: UICollectionViewDelegate, UICollectionViewDataSou
                 withReuseIdentifier: RMCharacterCollectionViewCell.identifier,
                 for: indexPath) as? RMCharacterCollectionViewCell
             guard let cell else { fatalError("WRONG CELL CAST") }
-            cell.backgroundColor = .systemPink
+            cell.backgroundColor = .systemBackground
             cell.configure(with: cellViewModel)
             return cell
         }

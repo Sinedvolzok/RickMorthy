@@ -50,7 +50,7 @@ final class RMCharacterEpisodesCollectionViewCell: UICollectionViewCell {
         [seasonLabel,
          nameLabel,
          airDateLabel,
-        ].forEach ({ contentView.addSubview($0) })
+        ].forEach(contentView.addSubview)
         setUpConstraints()
     }
     
