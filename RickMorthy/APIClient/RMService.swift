@@ -23,7 +23,7 @@ final class RMService {
     ///   - request: Reqest Instanse
     ///   - type: Type of object we expect to get back
     ///   - complition: Callback with data or error
-    public func execute<T:Codable>(
+    public func execute<T:Decodable>(
         _ request: RMRequest,
         expecting type: T.Type,
         complition: @escaping (Result<T, Error>) -> () ) {

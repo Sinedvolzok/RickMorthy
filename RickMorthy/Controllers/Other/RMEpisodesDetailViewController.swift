@@ -11,7 +11,7 @@ final class RMEpisodesDetailViewController: UIViewController {
     
     private let viewModel: RMEpisodeDetailViewViewModel
     private let detailView = RMEpisodeDetailView()
-    // MARK: - Init
+    // MARK: Init
     init(url: URL?) {
         self.viewModel = RMEpisodeDetailViewViewModel(endpointUrl: url)
         super.init(nibName: nil, bundle: nil)
@@ -19,7 +19,7 @@ final class RMEpisodesDetailViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    // MARK: - Lifecycle
+    // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
@@ -27,6 +27,7 @@ final class RMEpisodesDetailViewController: UIViewController {
         view.addSubview(detailView)
         setUpConstraints()
         addShareButton()
+        detailView.delegate = self
         viewModel.delegate = self
         viewModel.fetchEpisodeData()
     }
@@ -52,9 +53,19 @@ final class RMEpisodesDetailViewController: UIViewController {
         ])
     }
 }
-// MARK: - Delegate
+// MARK: - ViewModel Delegate
 extension RMEpisodesDetailViewController: RMEpisodeDetailViewViewModelDelegate {
     func didFetchEpisodeDetails() {
         detailView.configure(with: viewModel)
+    }
+}
+// MARK: - View Delegate
+extension RMEpisodesDetailViewController: RMEpisodeDetailViewDelegate {
+    func rmEpisodeDetailView(_ detailView: RMEpisodeDetailView, didSelect character: RMCharacter) {
+        let viewController = RMCharacterDetailViewController(
+            viewModel: .init(character: character))
+        viewController.title = character.name
+        viewController.navigationItem.largeTitleDisplayMode = .never
+        navigationController?.pushViewController(viewController, animated: true)
     }
 }

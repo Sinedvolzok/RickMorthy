@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct RMCharacter: Codable {
+struct RMCharacter: Decodable {
     let id: Int
     let name: String
     let status: Status
@@ -21,7 +21,7 @@ struct RMCharacter: Codable {
     let url: StringURL
     let created: StringDate
     
-    enum Status: String, Codable {
+    enum Status: String, Decodable {
         case alive = "Alive"
         case dead = "Dead"
         case unknown = "unknown"
@@ -36,7 +36,7 @@ struct RMCharacter: Codable {
         }
     }
     
-    enum Gender: String, Codable {
+    enum Gender: String, Decodable {
         case female = "Female"
         case male = "Male"
         case genderless = "Genderless"

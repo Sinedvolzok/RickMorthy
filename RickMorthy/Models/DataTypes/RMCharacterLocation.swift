@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct RMCharacterLocation: Codable {
+struct RMCharacterLocation: Decodable {
     let name: String
     let url: String
 }

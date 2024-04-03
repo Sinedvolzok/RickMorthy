@@ -1,5 +1,5 @@
 //
-//  ShortDateFormatter.swift
+//  RMDateFormatter.swift
 //  RickMorthy
 //
 //  Created by Denis Kozlov on 29.03.2024.
@@ -9,7 +9,7 @@ import Foundation
 
 import UIKit
 
-final class ShortDateFormatter {
+final class RMDateFormatter {
     private static let getValue: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
@@ -22,7 +22,7 @@ final class ShortDateFormatter {
         formatter.timeStyle = .short
         return formatter
     }()
-    public static func formatDate(from date: String?) -> String {
+    public static func format(from date: String?) -> String {
         guard let date else { return "Unknown" }
         guard let dateToFormat = Self.getValue.date(from: date) else { return "Unknown" }
         let createdString = Self.setValue.string(from: dateToFormat)

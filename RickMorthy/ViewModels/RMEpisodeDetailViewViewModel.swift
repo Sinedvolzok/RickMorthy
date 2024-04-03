@@ -31,12 +31,17 @@ final class RMEpisodeDetailViewViewModel {
     init(endpointUrl: URL?) {
         self.endpointUrl = endpointUrl
     }
+    public func character(at index: Int) -> RMCharacter? {
+        guard let dataTyple else { return nil }
+        let character = dataTyple.characters[index]
+        return character
+    }
     // MARK: - Private
     private func createCellViewModels() {
         guard let dataTyple else { return }
         let episode = dataTyple.episode
         let characters = dataTyple.characters
-        let createdString = ShortDateFormatter.formatDate(from: episode.created)
+        let createdString = RMDateFormatter.format(from: episode.created)
         cellViewModels = [
             .information(viewModels: [
                 .init(title: "Episode Name", value: episode.name),
