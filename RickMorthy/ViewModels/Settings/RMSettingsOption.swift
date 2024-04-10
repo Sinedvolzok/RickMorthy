@@ -37,6 +37,24 @@ extension RMSettingsOption {
             "View App Code"
         }
     }
+    var iconContainercolor: UIColor {
+        switch self {
+        case .rateApp:
+            return .systemRed
+        case .contactUs:
+            return .systemGreen
+        case .terms:
+            return .systemBlue
+        case .privasy:
+            return .systemMint
+        case .apiReferense:
+            return .systemTeal
+        case .viewSeries:
+            return .systemPurple
+        case .viewCode:
+            return .systemYellow
+        }
+    }
     var iconImage: UIImage? {
         switch self {
         case .rateApp:

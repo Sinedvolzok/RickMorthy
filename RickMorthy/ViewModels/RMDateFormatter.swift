@@ -22,7 +22,7 @@ final class RMDateFormatter {
         formatter.timeStyle = .short
         return formatter
     }()
-    public static func format(from date: String?) -> String {
+    public class func format(from date: String?) -> String {
         guard let date else { return "Unknown" }
         guard let dateToFormat = Self.getValue.date(from: date) else { return "Unknown" }
         let createdString = Self.setValue.string(from: dateToFormat)

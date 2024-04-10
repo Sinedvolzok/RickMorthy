@@ -7,12 +7,21 @@
 
 import UIKit
 
-struct RMSettingsCellViewModel {
-    public let type: RMSettingsOption
+struct RMSettingsCellViewModel: Identifiable {
+    public let id = UUID()
+    private let type: RMSettingsOption
+    // MARK: Init
+    init(type: RMSettingsOption) {
+        self.type = type
+    }
+    // MARK: Public
     public var image: UIImage? {
         type.iconImage
     }
     public var title: String {
         type.dispayTitle
+    }
+    public var iconContainerColor: UIColor {
+        type.iconContainercolor
     }
 }
