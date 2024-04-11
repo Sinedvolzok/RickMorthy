@@ -14,18 +14,25 @@ struct RMSettingsView: View {
     }
     var body: some View {
         List(viewModel.cellViewModels) { model in
-            HStack(spacing: 24) {
+            HStack {
                 if let image = model.image { Image(uiImage: image)
                         .resizable()
+                        .renderingMode(.template)
+                        .foregroundColor(.secondarySystemBackground)
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: 30)
-                        .padding(2)
+                        .padding(6)
+                        .frame(width: 36)
                         .background(Color(model.iconContainerColor))
-                        .cornerRadius(4)
+                        .cornerRadius(8)
                     Text(model.title)
+                        .padding(.leading, 16)
+                    Spacer()
                 }
             }
             .padding()
+            .onTapGesture {
+                model.onTapHandler(model.type)
+            }
         }
     }
 }
@@ -37,7 +44,10 @@ struct RMSettingsView: View {
                     RMSettingsOption
                     .allCases
                     .compactMap({
-                        RMSettingsCellViewModel(type: $0)
+                        RMSettingsCellViewModel(type: $0) {
+                            option in
+                            print(option.dispayTitle)
+                        }
                     })
             )
     )
