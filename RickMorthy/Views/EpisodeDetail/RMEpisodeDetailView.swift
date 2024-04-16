@@ -40,9 +40,7 @@ final class RMEpisodeDetailView: UIView {
         backgroundColor = .systemBackground
         let collectionView = createCollectionView()
         self.collectionView = collectionView
-        [collectionView, spinner].forEach ({
-            addSubview($0)
-        })
+        [collectionView, spinner].forEach(addSubview)
         addConstraints()
         spinner.startAnimating()
     }
@@ -86,7 +84,7 @@ final class RMEpisodeDetailView: UIView {
             forCellWithReuseIdentifier: RMCharacterCollectionViewCell.identifier)
         return collectionView
     }
-    // MARK: - Public
+    // MARK: Public
     public func configure(with viewModel: RMEpisodeDetailViewViewModel) {
         self.viewModel = viewModel
     }

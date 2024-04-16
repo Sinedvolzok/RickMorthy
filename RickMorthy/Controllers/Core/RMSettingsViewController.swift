@@ -7,13 +7,21 @@
 
 import UIKit
 import SwiftUI
+import SafariServices
+import StoreKit
 
 /// Controller to show varios app options and settings
+@available(iOS 16.0, *)
 final class RMSettingsViewController: UIViewController {
     override func viewDidLoad() {
         setUpView()
         addSwiftUIContrioller()
     }
+    @Environment(\.requestReview) private var requestReview
+    /// An identifier for the three-step process the person completes before this app chooses to request a review.
+    @AppStorage("processCompletedCount") var processCompletedCount = 0
+    /// The most recent app version that prompts for a review.
+    @AppStorage("lastVersionPromptedForReview") var lastVersionPromptedForReview = ""
     private var settingsController: UIHostingController<RMSettingsView>?
     private func setUpView() {
         view.backgroundColor = .systemBackground
@@ -46,28 +54,30 @@ final class RMSettingsViewController: UIViewController {
     
     private func handleTap(option: RMSettingsOption) {
         guard Thread.current.isMainThread else { return }
-        switch option {
-        case .rateApp:
-            // do something
-            let handling = UIButton()
-        case .contactUs:
-            // do something
-            let handling = UIButton()
-        case .terms:
-            // do something
-            let handling = UIButton()
-        case .privasy:
-            // do something
-            let handling = UIButton()
-        case .apiReferense:
-            // do something
-            let handling = UIButton()
-        case .viewSeries:
-            // do something
-            let handling = UIButton()
-        case .viewCode:
-            // do something
-            let handling = UIButton()
+        if let url = option.targetUrl {
+            // Open Website
+            let viewController = SFSafariViewController(url: url)
+            present(viewController, animated: true)
+        } else if option == .rateApp {
+            // Show Rate
+            if processCompletedCount >= 4, UIApplication.appVersion != lastVersionPromptedForReview {
+                presentReview()
+                
+                // The app already displayed the rating and review request view. Store this current version.
+                guard let currentAppVersion = UIApplication.appVersion else {
+                    return
+                }
+                lastVersionPromptedForReview = currentAppVersion
+            }
+        }
+    }
+    
+    private func presentReview() {
+        
+        Task {
+            // Delay for two seconds to avoid interrupting the person using the app.
+            try await Task.sleep(for: .seconds(2))
+            await requestReview()
         }
     }
 }

@@ -18,7 +18,8 @@ final class RMCharacterInfoCollectionViewCellViewModel {
     public var displayValue: String {
         guard !value.isEmpty else { return "None" }
         if type == .created {
-            let shortDate = RMDateFormatter.format(from: value)
+            let shortDate = RMDateFormatter.shared
+                .format(from: value)
             return shortDate
         }
         return value

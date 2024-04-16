@@ -19,6 +19,25 @@ enum RMSettingsOption: CaseIterable {
 }
 // MARK: - Computed
 extension RMSettingsOption {
+    var targetUrl: URL? {
+        switch self {
+        case .rateApp:
+            nil
+        case .contactUs:
+            URL(string: "https://iosacademy.io")
+        case .terms:
+            URL(string: "https://iosacademy.io/terms")
+        case .privasy:
+            URL(string: "https://iosacademy.io/privacy")
+        case .apiReferense:
+            URL(string: "https://iosacademy.io")
+        case .viewSeries:
+            URL(string: "https://iosacademy.io")
+        case .viewCode:
+            URL(string: "https://iosacademy.io")
+        }
+    }
+    
     var dispayTitle: String {
         switch self {
         case .rateApp:

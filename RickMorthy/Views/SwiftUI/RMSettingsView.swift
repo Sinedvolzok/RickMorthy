@@ -14,7 +14,7 @@ struct RMSettingsView: View {
     }
     var body: some View {
         List(viewModel.cellViewModels) { model in
-            HStack {
+            HStack(spacing: 20) {
                 if let image = model.image { Image(uiImage: image)
                         .resizable()
                         .renderingMode(.template)
@@ -25,11 +25,11 @@ struct RMSettingsView: View {
                         .background(Color(model.iconContainerColor))
                         .cornerRadius(8)
                     Text(model.title)
-                        .padding(.leading, 16)
                     Spacer()
                 }
             }
-            .padding()
+            .padding(.top, 8)
+            .padding(.bottom, 10)
             .onTapGesture {
                 model.onTapHandler(model.type)
             }

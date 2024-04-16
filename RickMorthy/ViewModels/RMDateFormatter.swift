@@ -9,23 +9,39 @@ import Foundation
 
 import UIKit
 
-final class RMDateFormatter {
-    private static let getValue: DateFormatter = {
+final class RMDateFormatter: DateFormattable {
+    static let shared = RMDateFormatter()
+    let dateFormat: String = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+    let dateStyle: DateFormatter.Style = .medium
+    let timeStyle: DateFormatter.Style = .short
+}
+
+// MARK: - Protocol
+protocol DateFormattable {
+    var dateFormat: String { get }
+    var dateStyle: DateFormatter.Style { get }
+    var timeStyle: DateFormatter.Style { get }
+}
+
+// MARK: - Extension
+extension DateFormattable {
+    var getValue: DateFormatter {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        formatter.dateFormat = dateFormat
         formatter.timeZone = .current
         return formatter
-    }()
-    private static let setValue: DateFormatter = {
+    }
+    var setValue: DateFormatter {
         let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        formatter.timeStyle = .short
+        formatter.dateStyle = dateStyle
+        formatter.timeStyle = timeStyle
         return formatter
-    }()
-    public class func format(from date: String?) -> String {
-        guard let date else { return "Unknown" }
-        guard let dateToFormat = Self.getValue.date(from: date) else { return "Unknown" }
-        let createdString = Self.setValue.string(from: dateToFormat)
+    }
+    func format(from date: String?) -> String {
+        guard let date else { return "Unknown date" }
+        guard let dateToFormat = getValue.date(from: date)
+        else { return "Unknown format" }
+        let createdString = setValue.string(from: dateToFormat)
         return createdString
     }
 }

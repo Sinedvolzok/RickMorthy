@@ -41,7 +41,8 @@ final class RMEpisodeDetailViewViewModel {
         guard let dataTyple else { return }
         let episode = dataTyple.episode
         let characters = dataTyple.characters
-        let createdString = RMDateFormatter.format(from: episode.created)
+        let createdString = RMDateFormatter.shared
+            .format(from: episode.created)
         cellViewModels = [
             .information(viewModels: [
                 .init(title: "Episode Name", value: episode.name),
